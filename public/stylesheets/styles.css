@@ -1,0 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Optional base styles */
+body {
+  margin: 0; /* Removes default body margin */
+  padding: 0;
+  line-height: 1.5; /* Improves readability */
+}
