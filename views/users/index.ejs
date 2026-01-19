@@ -1,9 +1,25 @@
-<%- include('../partials/_navbar.ejs') %>
-<h1>Community Members</h1>
-<ul>
-  <% allUsers.forEach(communityUser => { %>
-    <li>
-      <a href="/users/<%= communityUser._id %>"><%= communityUser.username %></a>
-    </li>
-  <% }) %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <div class="container">
+    <h1>Fragrance Community</h1>
+    <p>Click On A Member To Explore Their Fragrance Vault & Get Inspired!</p>
+    
+    <hr />
+
+    <ul>
+      <% allUsers.forEach(communityUser => { %>
+        <li>
+          <strong><%= communityUser.username %></strong>
+          <a href="/users/<%= communityUser._id %>" class="btn-new">View Vault</a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

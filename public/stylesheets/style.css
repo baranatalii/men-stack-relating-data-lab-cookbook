@@ -1,0 +1,113 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  line-height: 1.5;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Vibrant Background Gradient */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed; /* Keeps background still while scrolling */
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* Container for your lists and forms to make them readable */
+ul,
+form,
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Navbar Styling */
+nav {
+  display: flex;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px 25px;
+  border-radius: 50px;
+  width: fit-content;
+  margin: 0 auto 30px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffd700;
+}
+
+/* Headers */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Links appearing as buttons (Add New / Edit) */
+a[href*="/new"],
+a[href*="/edit"] {
+  display: inline-block;
+  background-color: #48dbfb;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin: 5px;
+  transition: background 0.3s;
+}
+
+a[href*="/new"]:hover,
+a[href*="/edit"]:hover {
+  background-color: #22a6b3;
+}
+
+/* Delete Buttons */
+button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition:
+    transform 0.2s,
+    background 0.3s;
+}
+
+button:hover {
+  background-color: #ee5253;
+  transform: translateY(-2px);
+}
+
+/* List Items */
+li {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:last-child {
+  border-bottom: none;
+}

@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Scent</title>
-  </head>
+  <%- include('../partials/head.ejs') %>
+
   <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <h1>Add a New Fragrance</h1>
+    <div class="container">
+      <h1>Add a New Fragrance</h1>
 
-    <form action="/users/<%= user._id %>/fragrances" method="POST">
-      <label for="name">Fragrance Name:</label>
-      <input type="text" name="name" id="name" required />
+      <form action="/users/<%= user._id %>/fragrances" method="POST">
+        <div class="form-group">
+          <label for="name">Fragrance Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="e.g. Bleu de Chanel"
+            required
+          />
+        </div>
 
-      <label for="brand">Brand:</label>
-      <input type="text" name="brand" id="brand" required />
+        <div class="form-group">
+          <label for="brand">Brand:</label>
+          <input
+            type="text"
+            name="brand"
+            id="brand"
+            placeholder="e.g. Chanel"
+            required
+          />
+        </div>
 
-      <button type="submit">Add to Vault</button>
-    </form>
+        <button type="submit">Add to Vault</button>
+        <a href="/users/<%= user._id %>/fragrances" class="cancel-link"
+          >Back to Vault</a
+        >
+      </form>
+    </div>
   </body>
 </html>

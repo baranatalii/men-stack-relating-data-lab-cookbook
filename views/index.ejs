@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Fragrance Vault</title>
-</head>
+
+<%- include('./partials/head.ejs') %>
+
 <body>
   <%- include('./partials/_navbar.ejs') %>
   
-  <h1>Welcome to the Fragrance Vault</h1>
-  
-  <% if (user) { %>
-    <p>Hello, <%= user.username %>! Ready To Check Your Collection?</p>
-  <% } else { %>
-    <p>Please Log In To See Your Private Collection.</p>
-  <% } %>
+  <div class="container">
+    <h1>Welcome to the Fragrance Vault</h1>
+    
+    <% if (user) { %>
+      <p>Hello, <strong><%= user.username %></strong>! Ready to check your collection?</p>
+      <a href="/users/<%= user._id %>/fragrances" class="btn-new">Go to My Vault</a>
+    <% } else { %>
+      <p>Please log in to see your private collection and explore the community.</p>
+      <div style="margin-top: 20px;">
+        <a href="/auth/login" class="btn-edit">Log In</a>
+        <a href="/auth/register" class="btn-new">Sign Up</a>
+      </div>
+    <% } %>
+  </div>
 </body>
 </html>

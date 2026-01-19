@@ -1,16 +1,28 @@
-<%- include('../partials/_navbar.ejs') %>
-<h1><%= userToShow.username %>'s Vault</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<% if (userToShow.fragrances.length > 0) { %>
-  <ul>
-    <% userToShow.fragrances.forEach(fragrance => { %>
-      <li>
-        <strong><%= fragrance.name %></strong> by <%= fragrance.brand %>
-        </li>
-    <% }) %>
-  </ul>
-<% } else { %>
-  <p>This user hasn't added any scents yet.</p>
-<% } %>
+<%- include('../partials/head.ejs') %>
 
-<a href="/users">Back to Community</a>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <div class="container">
+    <h1><%= userToShow.username %>'s Vault</h1>
+    
+    <a href="/users" style="color: #666;">← Back To Community</a>
+    <hr />
+
+    <% if (userToShow.fragrances.length > 0) { %>
+      <ul>
+        <% userToShow.fragrances.forEach(fragrance => { %>
+          <li>
+            <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
+            </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>This User Hasn't Added Any Fragrances To Their Vault Yet.</p>
+    <% } %>
+  </div>
+</body>
+</html>

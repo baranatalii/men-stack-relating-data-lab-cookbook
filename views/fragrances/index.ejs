@@ -1,22 +1,38 @@
-<h1>Your Collection</h1>
-<a href="/users/<%= user._id %>/fragrances/new">Add New Fragrance</a>
+<!DOCTYPE html>
+<html lang="en">
 
-<hr />
+<%- include('../partials/head.ejs') %>
 
-<% if (fragrances.length > 0) { %>
-  <ul>
-    <% fragrances.forEach(fragrance => { %>
-      <li>
-    <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
-    
-    <a href="/users/<%= user._id %>/fragrances/<%= fragrance._id %>/edit">Edit</a>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
 
-    <form action="/users/<%= user._id %>/fragrances/<%= fragrance._id %>?_method=DELETE" method="POST" style="display: inline;">
-      <button type="submit">Delete</button>
-    </form>
-  </li>
-    <% }) %>
-  </ul>
-<% } else { %>
-  <p>There Are No Items In This Vault Yet.</p>
-<% } %>
+  <div class="container">
+    <h1>Your Collection</h1>
+    <a href="/users/<%= user._id %>/fragrances/new" class="btn-new">Add New Fragrance</a>
+
+    <hr />
+
+    <% if (fragrances.length > 0) { %>
+      <ul>
+        <% fragrances.forEach(fragrance => { %>
+          <li>
+            <div>
+              <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
+            </div>
+            
+            <div class="actions">
+              <a href="/users/<%= user._id %>/fragrances/<%= fragrance._id %>/edit">Edit</a>
+
+              <form action="/users/<%= user._id %>/fragrances/<%= fragrance._id %>?_method=DELETE" method="POST" style="display: inline;">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>There Are No Items In This Vault Yet.</p>
+    <% } %>
+  </div>
+</body>
+</html>
