@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Fragrance Vault</title>
-  </head>
-  <body>
-    <%- include('../partials/_navbar.ejs') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Fragrance Vault</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
 
-    <h1>Your Collection</h1>
-    <p>Welcome To Your Personal Fragrance Vault!</p>
-  </body>
+  <h1>Your Collection</h1>
+  <p>Welcome To Your Personal Fragrance Vault!</p>
+
+  <a href="/users/<%= user._id %>/fragrances/new">Add New Fragrance</a>
+
+  <hr />
+
+  <ul>
+    <% fragrances.forEach(fragrance => { %>
+      <li>
+        <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
+      </li>
+    <% }) %>
+  </ul>
+
+</body>
 </html>

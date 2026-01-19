@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Scent</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Add a New Fragrance</h1>
+
+    <form action="/users/<%= user._id %>/fragrances" method="POST">
+      <label for="name">Fragrance Name:</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="brand">Brand:</label>
+      <input type="text" name="brand" id="brand" required />
+
+      <button type="submit">Add to Vault</button>
+    </form>
+  </body>
+</html>
