@@ -8,9 +8,14 @@
     <% fragrances.forEach(fragrance => { %>
       <li>
         <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
+        
+        <form action="/users/<%= user._id %>/fragrances/<%= fragrance._id %>?_method=DELETE" method="POST" style="display: inline;">
+          <button type="submit">Delete</button>
+        </form>
+        
       </li>
     <% }) %>
   </ul>
 <% } else { %>
-  <p>There are no items in this vault yet.</p>
+  <p>There Are No Items In This Vault Yet.</p>
 <% } %>
