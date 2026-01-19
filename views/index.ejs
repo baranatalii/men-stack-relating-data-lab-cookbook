@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Page</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-  </head>
-  <body>
-    <%- include("partials/nav.ejs", { user }) %>
-    <% if (user) {%>
-      <h1>Welcome to the app, <%= user.username %></h1>
-    <% } else { %>
-      <h1>Welcome to the app, Guest!</h1>
-    <% } %>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Fragrance Vault</title>
+</head>
+<body>
+  <%- include('./partials/_navbar.ejs') %>
+  
+  <h1>Welcome to the Fragrance Vault</h1>
+  
+  <% if (user) { %>
+    <p>Hello, <%= user.username %>! Ready To Check Your Collection?</p>
+  <% } else { %>
+    <p>Please Log In To See Your Private Collection.</p>
+  <% } %>
+</body>
 </html>
