@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const User = require("../models/user.js");
 
-// INDEX - GET /users/:userId/fragrances
+// INDEX - GET
 router.get("/", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// NEW - GET /users/:userId/fragrances/new
+// NEW - GET
 router.get("/new", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
@@ -27,7 +27,7 @@ router.get("/new", async (req, res) => {
   }
 });
 
-// CREATE - POST /users/:userId/fragrances
+// CREATE - POST
 router.post("/", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
@@ -40,18 +40,56 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE - DELETE /users/:userId/fragrances/:fragranceId
+// DELETE - DELETE
 router.delete("/:fragranceId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
 
-    // Look into the fragrances array and delete the one with the matching ID
+    // Look Into The Fragrances Array & Delete The One With The Matching ID
     currentUser.fragrances.id(req.params.fragranceId).deleteOne();
 
-    // Save the parent document (the user) to finalize the removal
+    // Save the Document To Finalize The Removal
     await currentUser.save();
 
-    // Send the user back to the index page
+    // Send The User Back To The Index Page
+    res.redirect(`/users/${currentUser._id}/fragrances`);
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+// EDIT - GET
+router.get("/:fragranceId/edit", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    const fragrance = currentUser.fragrances.id(req.params.fragranceId);
+
+    res.render("fragrances/edit.ejs", {
+      fragrance: fragrance,
+      user: currentUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+// UPDATE - PUT
+router.put("/:fragranceId", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.userId);
+
+    // Find the specific fragrance by ID
+    const fragrance = currentUser.fragrances.id(req.params.fragranceId);
+
+    // Update The Fragrance With New Data
+    fragrance.set(req.body);
+
+    // Save The User Document
+    await currentUser.save();
+
+    // Redirect Back
     res.redirect(`/users/${currentUser._id}/fragrances`);
   } catch (error) {
     console.log(error);

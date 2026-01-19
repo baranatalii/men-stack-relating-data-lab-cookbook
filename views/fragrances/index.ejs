@@ -7,13 +7,14 @@
   <ul>
     <% fragrances.forEach(fragrance => { %>
       <li>
-        <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
-        
-        <form action="/users/<%= user._id %>/fragrances/<%= fragrance._id %>?_method=DELETE" method="POST" style="display: inline;">
-          <button type="submit">Delete</button>
-        </form>
-        
-      </li>
+    <strong><%= fragrance.name %></strong> - <%= fragrance.brand %>
+    
+    <a href="/users/<%= user._id %>/fragrances/<%= fragrance._id %>/edit">Edit</a>
+
+    <form action="/users/<%= user._id %>/fragrances/<%= fragrance._id %>?_method=DELETE" method="POST" style="display: inline;">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
     <% }) %>
   </ul>
 <% } else { %>
