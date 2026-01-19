@@ -45,13 +45,12 @@ router.delete("/:fragranceId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
 
-    // Look Into The Fragrances Array & Delete The One With The Matching ID
+    // Find the specific fragrance D & Remove it
     currentUser.fragrances.id(req.params.fragranceId).deleteOne();
 
-    // Save the Document To Finalize The Removal
+    // Save the Parent Document For Removal
     await currentUser.save();
 
-    // Send The User Back To The Index Page
     res.redirect(`/users/${currentUser._id}/fragrances`);
   } catch (error) {
     console.log(error);
@@ -80,16 +79,16 @@ router.put("/:fragranceId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
 
-    // Find the specific fragrance by ID
+    // 1. Find the specific fragrance by ID inside the user's array
     const fragrance = currentUser.fragrances.id(req.params.fragranceId);
 
-    // Update The Fragrance With New Data
+    // 2. Update the Fragrance values with req.body
     fragrance.set(req.body);
 
-    // Save The User Document
+    // 3. Save the Parent Document
     await currentUser.save();
 
-    // Redirect Back
+    // 4. Redirect to the index page
     res.redirect(`/users/${currentUser._id}/fragrances`);
   } catch (error) {
     console.log(error);
