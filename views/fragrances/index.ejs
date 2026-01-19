@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Fragrance Vault</title>
-</head>
-<body>
-  <%- include('../partials/_navbar.ejs') %>
+<h1>Your Collection</h1>
+<a href="/users/<%= user._id %>/fragrances/new">Add New Fragrance</a>
 
-  <h1>Your Collection</h1>
-  <p>Welcome To Your Personal Fragrance Vault!</p>
+<hr />
 
-  <a href="/users/<%= user._id %>/fragrances/new">Add New Fragrance</a>
-
-  <hr />
-
+<% if (fragrances.length > 0) { %>
   <ul>
     <% fragrances.forEach(fragrance => { %>
       <li>
@@ -22,6 +11,6 @@
       </li>
     <% }) %>
   </ul>
-
-</body>
-</html>
+<% } else { %>
+  <p>There are no items in this vault yet.</p>
+<% } %>

@@ -8,6 +8,8 @@ router.get("/", async (req, res) => {
     const currentUser = await User.findById(req.params.userId);
 
     res.render("fragrances/index.ejs", {
+      // Passing both the user and the fragrances array
+      user: currentUser,
       fragrances: currentUser.fragrances || [],
     });
   } catch (error) {
@@ -16,23 +18,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/new", (req, res) => {
-  res.render("fragrances/new.ejs");
+// NEW - GET /users/:userId/fragrances/new
+router.get("/new", async (req, res) => {
+  // We find the user here too so the 'new' page knows the userId for the form action
+  const currentUser = await User.findById(req.params.userId);
+  res.render("fragrances/new.ejs", { user: currentUser });
 });
 
 // CREATE - POST /users/:userId/fragrances
 router.post("/", async (req, res) => {
   try {
-    // 1. Find the user by the ID in the URL
     const currentUser = await User.findById(req.params.userId);
-
-    // 2. Push the form data (req.body) into the user's fragrances array
     currentUser.fragrances.push(req.body);
-
-    // 3. Save the changes to the user document in MongoDB
     await currentUser.save();
-
-    // 4. Redirect the user back to their vault to see the new scent
     res.redirect(`/users/${currentUser._id}/fragrances`);
   } catch (error) {
     console.log(error);
