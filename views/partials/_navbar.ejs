@@ -1,6 +1,7 @@
 <nav>
   <a href="/">Home</a>
   <% if (user) { %>
+    <a href="/users">Explore Community</a>
     <a href="/users/<%= user._id %>/fragrances">My Vault</a>
     <a href="/auth/sign-out">Sign Out</a>
   <% } else { %>

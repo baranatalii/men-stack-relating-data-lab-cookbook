@@ -3,11 +3,12 @@ const logger = require("morgan");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const passUserToView = require("./middleware/pass-user-to-view.js");
-const isSignedIn = require("./middleware/is-signed-in.js"); // ADDED THIS
+const isSignedIn = require("./middleware/is-signed-in.js");
 const path = require("path");
 const db = require("./db/connection.js");
 const routes = require("./routes/index.js");
-const fragrancesController = require("./controllers/fragrances.js"); // ADDED THIS
+const fragrancesController = require("./controllers/fragrances.js");
+const usersController = require("./controllers/users.js"); // Added
 const dotenv = require("dotenv");
 const MongoStore = require("connect-mongo").default;
 dotenv.config();
@@ -35,6 +36,10 @@ app.use(passUserToView);
 // Routes
 app.use("/", routes);
 
+// Community Routes
+app.use("/users", usersController);
+
+// My Vault Routes (Protected)
 app.use("/users/:userId/fragrances", isSignedIn, fragrancesController);
 
 // Initialize Server

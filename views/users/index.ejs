@@ -1,0 +1,9 @@
+<%- include('../partials/_navbar.ejs') %>
+<h1>Community Members</h1>
+<ul>
+  <% allUsers.forEach(communityUser => { %>
+    <li>
+      <a href="/users/<%= communityUser._id %>"><%= communityUser.username %></a>
+    </li>
+  <% }) %>
+</ul>

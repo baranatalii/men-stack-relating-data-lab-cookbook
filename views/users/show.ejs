@@ -1,0 +1,16 @@
+<%- include('../partials/_navbar.ejs') %>
+<h1><%= userToShow.username %>'s Vault</h1>
+
+<% if (userToShow.fragrances.length > 0) { %>
+  <ul>
+    <% userToShow.fragrances.forEach(fragrance => { %>
+      <li>
+        <strong><%= fragrance.name %></strong> by <%= fragrance.brand %>
+        </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>This user hasn't added any scents yet.</p>
+<% } %>
+
+<a href="/users">Back to Community</a>
